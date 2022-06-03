@@ -61,4 +61,4 @@ buck-out/
 /vendor/bundle/
 
 #ios 
-ios/GoogleService-Info.plist
+/ios/GoogleService-Info.plist
