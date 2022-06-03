@@ -19,8 +19,12 @@ exports.changeCodeOnDelivery = functions.firestore
   .document('items/{itemID}')
   .onUpdate((change, context) => {
     const newValue = change.after.data();
+    const oldValue = change.before.data();
 
-    if (newValue.delivery_status === 'Delivered And Boxafed') {
+    if (
+      newValue.delivery_status == 'Delivered And Boxafed' &&
+      newValue.delivery_status !== oldValue.delivery_status
+    ) {
       const newCode = Math.floor(100000 + Math.random() * 900000);
       itemsRef.doc(context.params.itemID).update({code: newCode});
     }
